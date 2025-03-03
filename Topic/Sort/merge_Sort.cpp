@@ -13,7 +13,7 @@ void mergeSS (int * arr , int s , int e ){
 
 
      //copy all data in two array
-
+  
      for(int i = 0 ; i<length1 ; i++)
      {
         first[i]=arr[mainArrayindex++];
