@@ -6,7 +6,7 @@ using namespace std;
 void countingSort(int arr[], int size) {
     if (size <= 0) return;
 
-    // Find the maximum and minimum elements to determine range
+    
     int maxElement = arr[0];
     int minElement = arr[0];
     for (int i = 1; i < size; i++) {
@@ -15,18 +15,23 @@ void countingSort(int arr[], int size) {
     }
     
     int range = maxElement - minElement + 1;
-    int shift = (minElement < 0) ? -minElement : 0;
+   int shift;
+if (minElement < 0) {
+    shift = -minElement;
+} else {
+    shift = 0;
+}
 
-    // Create counting array and output array dynamically
+    
     int* count = new int[range]();
     int* output = new int[size];
 
-    // Count occurrences of each element
+    
     for (int i = 0; i < size; i++) {
         count[arr[i] + shift]++;
     }
 
-    // Calculate cumulative count
+    
     for (int i = 1; i < range; i++) {
         count[i] += count[i - 1];
     }
@@ -37,17 +42,17 @@ void countingSort(int arr[], int size) {
         count[arr[i] + shift]--;
     }
 
-    // Copy the sorted elements back to original array
+    
     for (int i = 0; i < size; i++) {
         arr[i] = output[i];
     }
 
-    // Clean up dynamically allocated memory
+    
     delete[] count;
     delete[] output;
 }
 
-// Utility function to print array
+
 void printArray(int arr[], int size) {
     for (int i = 0; i < size; i++) {
         cout << arr[i] << " ";
@@ -55,7 +60,7 @@ void printArray(int arr[], int size) {
     cout << endl;
 }
 
-// Main function to test the counting sort
+
 int main() {
     int arr[] = {4, 2, -1, 8, 3, 9, 2, -5, 7};
     int size = sizeof(arr) / sizeof(arr[0]);
