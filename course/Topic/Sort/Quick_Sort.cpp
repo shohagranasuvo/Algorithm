@@ -14,9 +14,9 @@ int  partition(int *arr ,int s ,int e)
         }
 
     }
-    int p=s+count ;
-    swap(arr[s] , arr [p]);
-    int i = s , j = e ;
+    int p=s+count;
+    swap(arr[s], arr[p]);
+    int i=s, j=e;
     while(i<p && j>p)
     {
         while(arr[i]<=pivot)
@@ -29,9 +29,9 @@ int  partition(int *arr ,int s ,int e)
         }
         if(i<p && j>p)
         {
-            swap(arr[i] , arr[j]);
-            i++ ;
-            j-- ;
+            swap(arr[i], arr[j]);
+            i++;
+            j--;
         }
     }
 

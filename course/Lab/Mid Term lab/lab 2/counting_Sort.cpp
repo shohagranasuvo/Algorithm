@@ -34,9 +34,9 @@ if (minElement < 0) {
     
     for (int i = 1; i < range; i++) {
         count[i] += count[i - 1];
-    }
+    } 
 
-    // Build the output array
+    
     for (int i = size - 1; i >= 0; i--) {
         output[count[arr[i] + shift] - 1] = arr[i];
         count[arr[i] + shift]--;
