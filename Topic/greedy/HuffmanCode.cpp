@@ -72,8 +72,29 @@ class Solution {
 
 int main()
 {
-    
-    
+   
+    string inputChars;
+    cout << "Enter characters: ";
+    cin >> inputChars;
+
+    int n = inputChars.length();
+    vector<int> freq(n);
+
+    cout << "Enter frequencies of characters:\n";
+    for (int i = 0; i < n; ++i) {
+        cout << inputChars[i] << ": ";
+        cin >> freq[i];
+    }
+
+   
+    Solution obj;
+    vector<string> codes = obj.huffmanCodes(inputChars, freq, n);
+
+   
+    cout << "\n📌 Huffman Codes:\n";
+    for (int i = 0; i < n; ++i) {
+        cout << inputChars[i] << " → " << codes[i] << "\n";
+    }
 
     return 0;
 }
