@@ -4,7 +4,10 @@ class items {
     public :
     int val ;
     int wt ;
-    items (int v ,int w):val(v),wt(w){};
+    items (int v ,int w){
+        val=v ;
+        wt=w;
+    }
 
 };
 class cmp {

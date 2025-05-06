@@ -22,14 +22,14 @@ class cmp{
     {
      return a->data > b->data ;
     }
-} ;
+};
 class Solution {
     public:
     void traversal(node* root ,vector<string>ans ,string s)
     {
         if(root->left==NULL && root->right==NULL)
         {
-            ans.push_back(s) ;
+            ans.push_back(s);
             return;
         }
          traversal(root->left ,ans , s+'0');
