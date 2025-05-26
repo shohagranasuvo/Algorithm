@@ -1,7 +1,6 @@
 #include <iostream>
 #include <climits>
 using namespace std;
-
 int matrixChain(int p[], int n) {
     int m[n][n];
 
@@ -18,7 +17,6 @@ int matrixChain(int p[], int n) {
             }
         }
     }
-
     return m[1][n-1];
 }
 
