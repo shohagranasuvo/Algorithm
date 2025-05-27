@@ -28,3 +28,18 @@ void warshall(int graph[V][V]) {
         cout << endl;
     }
 }
+int main() {
+   
+    int graph[V][V] = {
+        {0,     5,   INF, 10},
+        {INF,   0,     3, INF},
+        {INF, INF,    0,   1},
+        {INF, INF, INF,   0}
+    };
+
+    cout << "All Pairs Shortest Paths (Floyd-Warshall Algorithm):\n";
+    warshall(graph);
+
+    return 0;
+}
+
