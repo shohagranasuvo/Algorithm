@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#define INF 1e9
+#define INF 1000000000
 #define V 4
 
 void warshall(int graph[V][V]) {
@@ -15,9 +15,9 @@ void warshall(int graph[V][V]) {
         for (int i = 0; i < V; i++)
             for (int j = 0; j < V; j++)
                 if (dist[i][k] < INF && dist[k][j] < INF)
-                    dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+                    if (dist[i][j] > dist[i][k] + dist[k][j])
+                        dist[i][j] = dist[i][k] + dist[k][j];
 
-    // Print result
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
             if (dist[i][j] == INF)
@@ -28,8 +28,8 @@ void warshall(int graph[V][V]) {
         cout << endl;
     }
 }
+
 int main() {
-   
     int graph[V][V] = {
         {0,     5,   INF, 10},
         {INF,   0,     3, INF},
@@ -37,9 +37,7 @@ int main() {
         {INF, INF, INF,   0}
     };
 
-    cout << "All Pairs Shortest Paths (Floyd-Warshall Algorithm):\n";
     warshall(graph);
 
     return 0;
 }
-

@@ -1,41 +1,39 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 
-void dfsUtil(int u, vector<bool>& visited, vector<int> adj[]) {
+#define MAX 100
+
+void dfsUtil(int u, bool visited[], int adj[][MAX], int V) {
     visited[u] = true;
     cout << u << " ";
 
-    for (int v : adj[u]) {
-        if (!visited[v])
-            dfsUtil(v, visited, adj);
+    for (int v = 0; v < V; v++) {
+        if (adj[u][v] && !visited[v])
+            dfsUtil(v, visited, adj, V);
     }
 }
 
-void dfs(int V, vector<int> adj[], int start) {
-    vector<bool> visited(V, false);
-    dfsUtil(start, visited, adj);
+void dfs(int V, int adj[][MAX], int start) {
+    bool visited[MAX] = {false};
+    dfsUtil(start, visited, adj, V);
 }
+
 int main() {
-    int V = 6; 
+    int V = 6;
+    int adj[MAX][MAX] = {0};
 
-   
-    vector<int> adj[V];
-
-    
-    adj[0].push_back(1);
-    adj[0].push_back(2);
-    adj[1].push_back(0);
-    adj[1].push_back(3);
-    adj[2].push_back(0);
-    adj[2].push_back(4);
-    adj[3].push_back(1);
-    adj[4].push_back(2);
-    adj[4].push_back(5);
-    adj[5].push_back(4);
+    adj[0][1] = 1;
+    adj[0][2] = 1;
+    adj[1][0] = 1;
+    adj[1][3] = 1;
+    adj[2][0] = 1;
+    adj[2][4] = 1;
+    adj[3][1] = 1;
+    adj[4][2] = 1;
+    adj[4][5] = 1;
+    adj[5][4] = 1;
 
     int startNode = 0;
-    cout << "DFS traversal starting from node " << startNode << ":\n";
     dfs(V, adj, startNode);
 
     return 0;

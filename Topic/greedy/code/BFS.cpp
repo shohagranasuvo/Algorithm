@@ -1,48 +1,60 @@
 #include <iostream>
-#include <vector>
-#include <queue>
 using namespace std;
 
-void bfs(int start, int V, vector<int> adj[]) {
-    vector<bool> visited(V, false);
-    queue<int> q;
+#define MAX 100
+
+int queue[MAX], front = -1, rear = -1;
+
+void enqueue(int x) {
+    if (rear == MAX - 1) return;
+    if (front == -1) front = 0;
+    queue[++rear] = x;
+}
+
+int dequeue() {
+    if (front == -1 || front > rear) return -1;
+    return queue[front++];
+}
+
+bool isEmpty() {
+    return (front == -1 || front > rear);
+}
+
+void bfs(int start, int V, int adj[][MAX]) {
+    bool visited[MAX] = {false};
 
     visited[start] = true;
-    q.push(start);
+    enqueue(start);
 
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
+    while (!isEmpty()) {
+        int u = dequeue();
         cout << u << " ";
 
-        for (int v : adj[u]) {
-            if (!visited[v]) {
+        for (int v = 0; v < V; v++) {
+            if (adj[u][v] && !visited[v]) {
                 visited[v] = true;
-                q.push(v);
+                enqueue(v);
             }
         }
     }
 }
+
 int main() {
-    int V = 6; 
+    int V = 6;
+    int adj[MAX][MAX] = {0};
 
-  
-    vector<int> adj[V];
-
-    
-    adj[0].push_back(1);
-    adj[0].push_back(2);
-    adj[1].push_back(0);
-    adj[1].push_back(3);
-    adj[2].push_back(0);
-    adj[2].push_back(4);
-    adj[3].push_back(1);
-    adj[4].push_back(2);
-    adj[4].push_back(5);
-    adj[5].push_back(4);
+    adj[0][1] = 1;
+    adj[0][2] = 1;
+    adj[1][0] = 1;
+    adj[1][3] = 1;
+    adj[2][0] = 1;
+    adj[2][4] = 1;
+    adj[3][1] = 1;
+    adj[4][2] = 1;
+    adj[4][5] = 1;
+    adj[5][4] = 1;
 
     int startNode = 0;
-    cout << "BFS traversal starting from node " << startNode << ":\n";
     bfs(startNode, V, adj);
 
     return 0;
